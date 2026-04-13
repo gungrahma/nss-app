@@ -46,7 +46,7 @@
                     <h1 id = "Typewritter"></h1>
                     <p>A project by SAYAORANQSINI, gungrahmaa and silvanusbrillian.</p>
                     <div style="margin-top: 32px;">
-                        <a href="{{ url('/projects') }}" class="btn">Visit our Instagram!</a>
+                        <a href="https://www.instagram.com/nssdariselatan/" class="btn">Visit our Instagram!</a>
                     </div>
                 </div>
             </div>
