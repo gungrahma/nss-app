@@ -233,7 +233,7 @@ p {
 #Typewritter::after {
     content: ' |';
     margin-left: 4px;
-    animation: blink 1s step-end infinite;
+    animation: blink 1.3s step-end infinite;
     color: var(--text-color); /* Menyesuaikan dengan warna teks tema kamu */
 }
 
@@ -267,6 +267,228 @@ p {
 }
 .logo-light {
     display: block !important; 
+}
+
+.box-style {
+    background-color: var(--card-bg); 
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+/* Grid-2 untuk Visi & Misi */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* Detailed Team Section */
+.team-grid-detailed {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 Kolom detail di Desktop */
+    gap: 40px;
+    margin-top: 50px;
+}
+
+/* Kartu Profil Detail */
+.team-card-detailed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card-detailed:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Bingkai Foto Profil */
+.team-portrait-frame {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden; /* Memotong gambar jadi lingkaran */
+    border: 3px solid var(--border-color);
+    margin-bottom: 25px;
+}
+
+.team-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Biar fotonya tidak gepeng */
+}
+
+/* Detail Teks Tim */
+.team-role {
+    font-size: 0.9rem;
+    color: var(--gray-medium);
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.team-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Links Tim */
+.team-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.team-links a {
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 25px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.team-links a:hover {
+    background-color: var(--gray-light);
+}
+
+/* MEDIA QUERIES (Biar ramai di HP tapi tumpuk) */
+@media (max-width: 900px) {
+    .team-grid-detailed {
+        grid-template-columns: 1fr; /* Tumpuk 1 kolom di HP */
+        gap: 35px;
+    }
+    .grid-2 {
+        grid-template-columns: 1fr; /* Tumpuk Visi/Misi */
+    }
+}
+
+/* =========================================
+   3D FLIPBOOK GALLERY
+   ========================================= */
+
+.gallery-section {
+    perspective: 1500px; /* Memberikan kedalaman 3D ke layar */
+}
+
+/* Ukuran Buku keseluruhan (Kiri + Kanan) */
+.book {
+    position: relative;
+    width: 800px; /* Total lebar saat buku terbuka */
+    height: 500px;
+    display: flex;
+    justify-content: flex-end; /* Semua halaman menumpuk di sisi KANAN saat buku tertutup */
+}
+
+/* Pengaturan Halaman */
+.page {
+    position: absolute;
+    width: 400px; /* Setengah dari lebar buku */
+    height: 100%;
+    transform-origin: left center; /* Engsel buku ada di KIRI halaman */
+    transform-style: preserve-3d;  /* Wajib untuk efek 3D bolak-balik */
+    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1); /* Efek buka halaman yang realistis */
+    cursor: pointer;
+}
+
+/* Sisi Depan dan Belakang Kertas */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Sembunyikan sisi yang sedang membelakangi kamera */
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05); /* Bayangan lipatan tengah buku */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Sisi Belakang harus dirotasi 180 derajat sejak awal */
+.back {
+    transform: rotateY(180deg);
+}
+
+/* Class saat halaman dibalik (Ditambahkan via JS) */
+.page.flipped {
+    transform: rotateY(-180deg); /* Balik ke sisi KIRI */
+}
+
+/* --- Desain Konten Buku --- */
+.cover {
+    background-color: #111;
+    color: white;
+    border-radius: 0 10px 10px 0; /* Ujung buku melengkung */
+}
+
+.cover-back {
+    background-color: #111;
+    color: white;
+    border-radius: 10px 0 0 10px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-text {
+    padding: 30px;
+    text-align: center;
+    font-style: italic;
+    color: var(--gray-medium);
+}
+
+.back-home-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+@media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .team-grid-detailed { grid-template-columns: 1fr; }
+    
+    /* --- PERBAIKAN FLIPBOOK UNTUK LAYAR KECIL --- */
+    
+    .gallery-section {
+        /* Cegah munculnya scrollbar bawah saat buku terbuka lebar */
+        overflow-x: hidden; 
+    }
+
+    .book { 
+        /* Buku akan selalu memakan 90% lebar layar */
+        width: 90vw; 
+        /* Tinggi mengikuti proporsi asli (sekitar 56% dari lebar layar) */
+        height: 56vw; 
+        justify-content: flex-end; /* Wajib dipertahankan agar engsel tetap di tengah */
+        margin-top: 20px;
+    }
+
+    .page { 
+        /* Halaman KEMBALI menjadi SETENGAH dari buku (45% lebar layar) */
+        width: 50%; 
+        transform-origin: left center; 
+    }
+
+    /* Sedikit mengecilkan ukuran teks dan padding agar pas di HP */
+    .cover-text { width: 90%; padding: 10px; }
+    .cover-text h2 { font-size: 1.2rem; margin-bottom: 5px; }
+    .page-text { padding: 10px; font-size: 0.8rem; }
+    .back-home-btn { padding: 5px 10px; font-size: 0.8rem; }
 }
 
 /* 2. Kondisi Dark Mode */
