@@ -15,9 +15,9 @@ php artisan serve
 
 ## Thanks to
 
-- SOS = Collaborator of NSS team
-- Ian (SB) = Collaborator of NSS team
-- Flora (Agung rahma) = Collaborator (IT Section) in NSS team
+- SOS = Collaborator NSS team
+- Ian (SB) = Collaborator NSS team
+- Flora (Agung rahma) = Collaborator (IT Section) NSS team
 
 
 # 2026 - NSS Dev Ops 
