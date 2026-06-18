@@ -29,15 +29,16 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN cp .env.example .env \
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts \
+    && cp .env.example .env \
     && php artisan key:generate --force \
-    && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts \
     && php artisan package:discover --ansi \
     && npm install --no-audit --no-fund \
     && npm run build \
     && mkdir -p database storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
     && touch database/database.sqlite \
-    && php artisan storage:link --force || true
+    && php artisan storage:link --force || true \
+    && test -f vendor/autoload.php || (echo "ERROR: vendor/autoload.php missing" && exit 1)
 
 EXPOSE 10000
 
