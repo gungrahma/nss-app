@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install bcmath intl zip
+RUN docker-php-ext-install bcmath intl zip pdo_sqlite
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
